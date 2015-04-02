@@ -7,6 +7,8 @@ sharing: true
 footer: true
 ---
 
+This page contains a short description for the SMTLibv2 input language that STP can parse. For a longer description please read <a href="www.grammatech.com/resource/smt/SMTLIBTutorial.pdf">this PDF</a>.
+
 Header
 ===========
 
