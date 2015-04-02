@@ -78,6 +78,13 @@ Signed division of -1/-2 =  0, should be satisfiable.
 C library usage
 =============
 
+When STP is built it generates a ``lib/libstp.a`` static library which can be used with one of two header files, depending on the preferred language:
+
+- ``include/stp/c_interface.h`` for a C interface to STP
+- ``include/stp/cpp_interface.h``for a C++ interface to STP
+
+An example C header usage can be as simple as:
+
 ```
 #include "stp/c_interface.h"
 #include <assert.h>
@@ -114,6 +121,8 @@ int main(int argc, char **argv) {
   return 0;
 }
 ```
+
+If you use CMake as the build system for your project it is easy to use STP as an external project. An example can be found in the sources under [``examples/simple``](https://github.com/stp/stp/tree/master/examples/simple).
 
 Awards
 =============
