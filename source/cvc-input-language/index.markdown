@@ -31,11 +31,11 @@ The Bit-vector implementation in STP supports a very large number of functions a
 Word level functions
 =========
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -79,7 +79,7 @@ Word level functions
 <td>WITH</td>
 <td>x_arr WITH [index] := value</td>
 </tr>
-</table>
+</table class="zab1">
 
 Notes:
 * For extraction terms, say t[i:j], n > i >= j >= 0, where n is the length of t.0
@@ -90,11 +90,11 @@ Notes:
 Bitwise functions
 =========
 
-<table>
+<table class="zab1">
 <tr>
-Name</td>
-Symbol</td>
-Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -138,17 +138,17 @@ Example</td>
 <td>BVXNOR</td>
 <td>BVXNOR(t1,t2)</td>
 </tr>
-</table>
+</table class="zab1">
 NOTE: It is required that all the arguments of bitwise functions have the same length
 
 Arithmetic functions
 =========
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 </tr>
@@ -198,7 +198,7 @@ Arithmetic functions
 <td>SBVMOD</td>
 <td>SBVMOD(n,t1,t2), where t1 is the dividend and t2 is the divisor</td>
 </tr>
-</table>
+</table class="zab1">
 
 Notes:
 * the number of output bits has to specified (except unary minus).
@@ -218,11 +218,11 @@ Predicates
 
 Following are the predicates supported by STP:
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -278,7 +278,7 @@ Following are the predicates supported by STP:
 <td>SBVGE</td>
 <td>SBVGE(t1,t2)</td>
 </tr>
-</table>
+</table class="zab1">
 
 Note:STP requires that in atomic formulas such as x=y, x and y are expressions of the same length. STP accepts Boolean combination of atomic formulas.
 

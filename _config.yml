@@ -6,7 +6,7 @@ url: http://stp.github.io
 title: STP constraint solver
 subtitle: Simple Theorem Prover SMT solver
 author: Vijay Ganesh, Trevor Hansen
-simple_search: https://www.google.com/search
+# simple_search: https://www.google.com/search
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")

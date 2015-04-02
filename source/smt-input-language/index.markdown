@@ -46,11 +46,11 @@ The Bit-vector implementation in STP supports a very large number of functions a
 <h3>Word level functions</h3>
 ===========
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -105,11 +105,11 @@ Notes:
 <h3>Bitwise functions</h3>
 ===========
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
