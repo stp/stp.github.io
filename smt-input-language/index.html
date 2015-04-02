@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>SMT Language - STP constraint solver</title>
+  <meta name="author" content="Vijay Ganesh, Trevor Hansen">
+
+  
+  <meta name="description" content="SMT Language Apr 2nd, 2015 3:49 pm Header The SMT-LIB2 format uses a header to tell the solver which type of problem is coming, the header needed is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stp.github.io/smt-input-language/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="STP constraint solver" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">STP constraint solver</a></h1>
+  
+    <h2>Simple Theorem Prover SMT solver</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="stp.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+   <li><a href="/">Overview</a></li>
+   <li><a href="/cvc-input-language/">CVC language</a></li> 
+   <li><a href="/smt-input-language/">SMT language</a></li> 
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">SMT Language</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T15:49:00+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>3:49 pm</span></time></p>
+  </header>
+  
+  <h1>Header</h1>
+
+<p>The SMT-LIB2 format uses a header to tell the solver which type of problem is coming,  the header needed is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(set-logic QF_ABV)
+</span><span class='line'>(set-info :smt-lib-version 2.0)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>QF_BV is for bit-vector problems, QF_ABV is for bit-vector and array problems.</p>
+
+<h1>Declarations</h1>
+
+<p>Bit-vector expressions (or terms) are constructed out of bit-vector constants, bit-vector variables and the functions listed below. In STP all variables have to declared before the point of use. An example declaration of a bit-vector variable of length, say 32, is as follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(declare-fun x () (_ BitVec 32))</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An example of an array declaration with 32 bit indices, and 7 bit results is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(declare-fun a () (Array (_ BitVec 32) (_ BitVec 7)))</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Functions and Terms</h1>
+
+<p>Bit-vector variables (or terms) of length 0 are not allowed. Bit-vector constants can be represented in binary or hexadecimal format. The rightmost bit is called the least significant bit (LSB), and the leftmost bit is the most significant bit(MSB). The index of the LSB is 0, and the index of the MSB is n-1 for an n-bit constant. This convention naturally extends to all bit-vector expressions. Following are some examples of bit-vector constants:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#b0000111101010000, and the corresponding hex representation is #x0f50.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Bit-vector implementation in STP supports a very large number of functions and predicates. The functions are categorized into word-level functions, bitwise functions, and arithmetic functions. Let t1,t2,&hellip;,tm denote some arbitrary bitvector terms.</p>
+
+<h3>Word level functions</h3>
+
+
+<hr />
+
+<table>
+<tr>
+<td>Name</td>
+<td>Symbol</td>
+<td>Example</td>
+</tr>
+
+<tr>
+<td>Concatenation</td>
+<td>concat</td>
+<td>(concat (_ bv0 16) x)</td>
+</tr>
+
+<tr>
+<td>Extraction</td>
+<td>extract</td>
+<td>((_ extract 7 0) o277135888)</td>
+</tr>
+
+<tr>
+<td>left shift</td>
+<td>bvlshl</td>
+<td>(bvlshl x y)</td>
+</tr>
+
+<tr>
+<td>right shift</td>
+<td>bvlshr</td>
+<td>(bvlshr x y)</td>
+</tr>
+
+<tr>
+<td>sign extension</td>
+<td>sign_extend</td>
+<td>((_ sign_extend 24) x)</td>
+</tr>
+
+<tr>
+<td>Array READ</td>
+<td>select</td>
+<td>(select e829 v817)</td>
+</tr>
+
+<tr>
+<td>Array WRITE</td>
+<td>store</td>
+<td>(store a x y)</td>
+</tr>
+</table>
+
+
+<p>Notes:
+* For extraction terms, say ((_extract i j) t), n > i >= j >= 0, where n is the length of t.
+* For left shift terms, t &lt;&lt; k is equal to k 0&rsquo;s appended to t. The length of t &lt;&lt; k is n.
+* For right shift terms, say t >> k, the term is equal to the bitvector obtained by k 0&rsquo;s followed by t[n-1:k]. The length of t >> k is n.</p>
+
+<h3>Bitwise functions</h3>
+
+
+<hr />
+
+<table>
+<tr>
+<td>Name</td>
+<td>Symbol</td>
+<td>Example</td>
+</tr>
+
+<tr>
+<td>Bitwise AND</td>
+<td>bvand</td>
+<td>(bvand o1 o6)</td>
+</tr>
+
+<tr>
+<td>Bitwise OR</td>
+<td>bvor</td>
+<td>(bvor var29 var30)</td>
+</tr>
+
+<tr>
+<td>Bitwise NOT</td>
+<td>bvnot</td>
+<td>(bvnot (_ bv0 2000))</td>
+</tr>
+
+<tr>
+<td>Bitwise XOR</td>
+<td>bvxor</td>
+<td>(bvxor e7015 e7019)</td>
+</tr>
+</table>
+
+
+<p>The arguments of bitwise functions have the same length.</p>
+
+<h1>Footer</h1>
+
+<p>After defining the problem, tell STP what to do. Usually this is to check the satisfiability, then to exit:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(check-sat)
+</span><span class='line'>(exit)</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Examples</h1>
+
+<p>There are many SMT-LIB2 format examples in STP&rsquo;s source code repository. Look for files with a .smt2 extension  here. Signed division of -1/-2 =  0, should be satisfiable:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(set-logic QF_BV)
+</span><span class='line'>(set-info :smt-lib-version 2.0)
+</span><span class='line'>(set-info :status sat)
+</span><span class='line'>(assert (= (bvsdiv (_ bv3 2) (_ bv2 2)) (_ bv0 2)))
+</span><span class='line'>(check-sat)
+</span><span class='line'>(exit)</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T15:49:00+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>3:49 pm</span></time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://stp.github.io/smt-input-language/index.html" data-via="" data-counturl="http://stp.github.io/smt-input-language/index.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Vijay Ganesh, Trevor Hansen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
