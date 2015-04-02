@@ -29,6 +29,9 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+
 
   
 
@@ -96,11 +99,11 @@
 
 <h1>Word level functions</h1>
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -144,7 +147,7 @@
 <td>WITH</td>
 <td>x_arr WITH [index] := value</td>
 </tr>
-</table>
+</table class="zab1">
 
 
 <p>Notes:
@@ -154,11 +157,11 @@
 
 <h1>Bitwise functions</h1>
 
-<table>
+<table class="zab1">
 <tr>
-Name</td>
-Symbol</td>
-Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -202,18 +205,18 @@ Example</td>
 <td>BVXNOR</td>
 <td>BVXNOR(t1,t2)</td>
 </tr>
-</table>
+</table class="zab1">
 
 
 <p>NOTE: It is required that all the arguments of bitwise functions have the same length</p>
 
 <h1>Arithmetic functions</h1>
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 </tr>
@@ -263,7 +266,7 @@ Example</td>
 <td>SBVMOD</td>
 <td>SBVMOD(n,t1,t2), where t1 is the dividend and t2 is the divisor</td>
 </tr>
-</table>
+</table class="zab1">
 
 
 <p>Notes:
@@ -284,11 +287,11 @@ Example</td>
 
 <p>Following are the predicates supported by STP:</p>
 
-<table>
+<table class="zab1">
 <tr>
-<td>Name</td>
-<td>Symbol</td>
-<td>Example</td>
+<th>Name</th>
+<th>Symbol</th>
+<th>Example</th>
 </tr>
 
 <tr>
@@ -344,7 +347,7 @@ Example</td>
 <td>SBVGE</td>
 <td>SBVGE(t1,t2)</td>
 </tr>
-</table>
+</table class="zab1">
 
 
 <p>Note:STP requires that in atomic formulas such as x=y, x and y are expressions of the same length. STP accepts Boolean combination of atomic formulas.</p>
