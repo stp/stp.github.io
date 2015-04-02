@@ -48,17 +48,13 @@
   
 </ul>
   
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="stp.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
 <ul class="main-navigation">
    <li><a href="/">Overview</a></li>
    <li><a href="/cvc-input-language/">CVC language</a></li> 
    <li><a href="/smt-input-language/">SMT language</a></li> 
+   <li><a href="/cnf-output-format/">CNF output format</a></li> 
+   <li><a href="/testing/">Testing</a></li> 
+   <li><a href="/code-guide/">Code Guide</a></li> 
 </ul>
 
 </nav>
@@ -155,6 +151,16 @@ git clone https://github.com/stp/minisat.git</code></p>
 
 <h1>C library usage</h1>
 
+<p>When STP is built it generates a <code>lib/libstp.a</code> static library which can be used with one of two header files, depending on the preferred language:</p>
+
+<ul>
+<li><code>include/stp/c_interface.h</code> for a C interface to STP</li>
+<li><code>include/stp/cpp_interface.h</code>for a C++ interface to STP</li>
+</ul>
+
+
+<p>An example C header usage can be as simple as:</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -225,6 +231,8 @@ git clone https://github.com/stp/minisat.git</code></p>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
+<p>If you use CMake as the build system for your project it is easy to use STP as an external project. An example can be found in the sources under <a href="https://github.com/stp/stp/tree/master/examples/simple"><code>examples/simple</code></a>.</p>
+
 <h1>Awards</h1>
 
 <ul>
@@ -293,8 +301,6 @@ git clone https://github.com/stp/minisat.git</code></p>
       
         <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://stp.github.io/index.html" data-via="" data-counturl="http://stp.github.io/index.html" >Tweet</a>
-  
   
   
 </div>
@@ -332,16 +338,6 @@ git clone https://github.com/stp/minisat.git</code></p>
 
 
 
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 

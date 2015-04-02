@@ -7,7 +7,16 @@
     <loc>http://stp.github.io/blog/archives/</loc>
   </url>
   <url>
+    <loc>http://stp.github.io/testing/</loc>
+  </url>
+  <url>
+    <loc>http://stp.github.io/cnf-output-format/</loc>
+  </url>
+  <url>
     <loc>http://stp.github.io/smt-input-language/</loc>
+  </url>
+  <url>
+    <loc>http://stp.github.io/code-guide/</loc>
   </url>
   <url>
     <loc>http://stp.github.io/cvc-input-language/</loc>

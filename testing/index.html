@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Testing - STP constraint solver</title>
+  <meta name="author" content="Vijay Ganesh, Trevor Hansen">
+
+  
+  <meta name="description" content="Testing Apr 2nd, 2015 4:26 pm Introduction STP currently supports the following types of tests Tests that use query files (i.e. smt, smt2 and cvc &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stp.github.io/testing/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="STP constraint solver" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">STP constraint solver</a></h1>
+  
+    <h2>Simple Theorem Prover SMT solver</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<ul class="main-navigation">
+   <li><a href="/">Overview</a></li>
+   <li><a href="/cvc-input-language/">CVC language</a></li> 
+   <li><a href="/smt-input-language/">SMT language</a></li> 
+   <li><a href="/cnf-output-format/">CNF output format</a></li> 
+   <li><a href="/testing/">Testing</a></li> 
+   <li><a href="/code-guide/">Code Guide</a></li> 
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Testing</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T16:26:00+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>4:26 pm</span></time></p>
+  </header>
+  
+  <h1>Introduction</h1>
+
+<p>STP currently supports the following types of tests</p>
+
+<ul>
+<li>Tests that use query files (i.e. <code>smt</code>, <code>smt2</code> and <code>cvc</code> files) to drive the <code>stp</code> binary and check the tool&rsquo;s output. These are driven using the <a href="https://pypi.python.org/pypi/lit">lit</a> and <a href="https://github.com/stp/OutputCheck">OutputCheck</a> tools. We refer to these as query file tests.</li>
+<li>Tests that use STP&rsquo;s API and are checked using the GoogleTest framework and driven using lit. We refer to these as unit tests.</li>
+</ul>
+
+
+<h1>Getting started</h1>
+
+<p>We depend on various external tools to do testing. Firstly you should install python. Secondly you should initialise STP&rsquo;s git submodules to get the GoogleTest and OutputCheck code.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd /path/stp/src
+</span><span class='line'>$ git submodule init
+</span><span class='line'>$ git submodule update</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you need to install the lit tool which is available from <a href="https://pypi.python.org/pypi">PyPi</a>. An easy way to install the tool is using the <code>pip</code> tool.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ pip install lit</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that for Ubuntu 14.04 you need install the <code>python-stdeb</code> package, fix the URL in <code>/usr/bin/pypi-install</code> to <code>https://pypi.python.org/pypi</code> and then execute <code>sudo pypi-install lit</code>.</p>
+
+<h2>Installing lit without root access</h2>
+
+<p>If you don&rsquo;t have root access to your machine you can use the <a href="http://www.virtualenv.org/en/latest/">virtualenv</a> tool to install lit in a local python environment.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd /path/to/put/your/virtual_environment
+</span><span class='line'>$ virtualenv venv
+</span><span class='line'>Using base prefix '/usr'
+</span><span class='line'>New python executable in venv/bin/python3
+</span><span class='line'>Also creating executable in venv/bin/python
+</span><span class='line'>Installing setuptools, pip...done.
+</span><span class='line'>$ . venv/bin/activate
+</span><span class='line'>(venv) $ pip install lit
+</span><span class='line'>Downloading/unpacking lit
+</span><span class='line'>  Downloading lit-0.3.0.tar.gz (45kB): 45kB downloaded
+</span><span class='line'>...                                                                                                                                  
+</span><span class='line'>Successfully installed lit                                                                                                                                                                                         
+</span><span class='line'>Cleaning up...
+</span><span class='line'>(venv) $</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note how the shell prompt changes when the <code>venv/bin/activate</code> script is executed from your shell. This is a hint that you are now using the python virtual environment named <code>venv</code></p>
+
+<p>Note if you do this you need to make sure CMake is aware that you want to use the python executable in your virtual environment and not the system python executable.</p>
+
+<p>If you have never executed CMake previously then if you run it from a shell where you have activated your virtual environemt (i.e. <code>venv/bin/activate</code>) then when CMake is configuring it will detect your virtual environment python executable.</p>
+
+<p>If you have executed CMake previously (e.g. because you have already built STP perhaps with testing disabled) then in a shell with your python virtual environment enabled you should run <code>make edit_cache</code> from the STP build directory root (<code>ninja edit_cache</code> for ninja) and then do one of the following</p>
+
+<ul>
+<li>Delete the <code>PYTHON_EXECUTABLE</code> cache variable and then configure. If all goes well you will see the <code>PYTHON_EXECUTABLE</code> reappear set to the full path to your virtual environment python executable. Once you have configured successfully you should regenerate the build system (i.e. press the generate button).</li>
+</ul>
+
+
+<p>OR</p>
+
+<ul>
+<li>Set the <code>PYTHON_EXECUTABLE</code> cache variable manually to the path to your virtual environment python executable and then configure and generate.</li>
+</ul>
+
+
+<h2>CMake options</h2>
+
+<p>There are various CMake options that allow control over testing. You can easily configure these by&hellip;</p>
+
+<ul>
+<li>When configuring for the first time use the <code>cmake-gui</code> or <code>ccmake</code> tool.</li>
+<li>If you&rsquo;ve already configured/built previously by running <code>make edit_cache</code> or <code>ninja edit_cache</code> in the build directory (this assumes you used the <code>cmake-gui</code> or <code>ccmake</code> tool when you first built).</li>
+</ul>
+
+
+<p>At the time of writing the following options are available</p>
+
+<ul>
+<li><code>ENABLE_TESTING</code> - If enabled other testing options will be available</li>
+<li><code>LIT_TOOL</code> - Path to the <code>lit</code> executable (you shouldn&rsquo;t need to modify this normally)</li>
+<li><code>PYTHON_EXECUTABLE</code> - Path to the python executable to use for testing programs. If you used <code>virtualenv</code> to install <code>lit</code> you should ensure that this CMake variable is set to the path to the <code>virtualenv</code> python executable. This will happen automatically if you used the virtualenv <code>activate</code> script before configuring.</li>
+<li><code>TEST_APIS</code> - If enabled the tests available under <code>tests/api</code> will become available.</li>
+<li><code>TEST_C_API</code> - If enabled the C API unit tests will be available for building/testing.</li>
+<li><code>TEST_QUERY_FILES</code> - If enabled the query file tests will be available for testing.</li>
+<li><code>USE_VALGRIND</code> - If enabled Valgrind will be used for unit tests.</li>
+</ul>
+
+
+<h2>Running tests</h2>
+
+<p>To attempt to run all tests from the build directory (assuming you are using the Makefile generated build system) run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ make check</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note if any tests fail other test suites will not execute (unless you pass the <code>-i</code> flag to make).</p>
+
+<h2>Notes for Query file tests</h2>
+
+<p>When using the <code>lit</code> tool to run query file tests it is possible to pass various handy parameters.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ lit --param=solver=/path/to/solver .</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will change the solver from STP to a solver of your choice</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ lit --param=solver_params="-flag1 -flag2 -flag3" .</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will pass additional flags to the solver</p>
+
+<h2>Individual test suites</h2>
+
+<h3>Query file tests</h3>
+
+<p>To run the query file tests run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ make query-file-tests</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to run directly using <code>lit</code> run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd /path/to/stp/build/
+</span><span class='line'>$ lit tests/query-files</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>C API tests</h3>
+
+<p>To run and build the C-api tests run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ make C-api-tests</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Individual tests</h2>
+
+<h3>Query file tests</h3>
+
+<p>When running the query file tests the lit tool gives you the ability to easily run a subset of tests. For example say you are in the <code>tests/query-files</code> directory. You can do the following</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ lit -v misc-tests/ unit_test/alwaysTrue.smt2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will run all tests under the <code>tests/misc-tests</code> folder and run the <code>unit_test/alwaysTrue.smt2</code> test.</p>
+
+<h3>Unit tests</h3>
+
+<p>The unit tests are built as standalone executables so individual tests can be executed by just running their executables.</p>
+
+<p>For example for the C API tests the built tests can be found in <code>tests/api/C</code> in the build directory.</p>
+
+<h2>Writing tests</h2>
+
+<h2>Query file tests</h2>
+
+<p>You should take a look the existing tests and at the <a href="http://llvm.org/docs/CommandGuide/lit.html">lit</a>, <a href="http://llvm.org/docs/TestingGuide.html#writing-new-regression-tests">LLVM testing</a> and <a href="https://github.com/stp/OutputCheck/blob/master/README.md">OutputCheck</a> documentation.</p>
+
+<h2>Unit tests</h2>
+
+<p>You should take a look at some existing testsand read the <a href="https://code.google.com/p/googletest/wiki/Documentation">GoogleTest documentation</a>.</p>
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T16:26:00+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>4:26 pm</span></time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Vijay Ganesh, Trevor Hansen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

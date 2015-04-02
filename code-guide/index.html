@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Code Guide - STP constraint solver</title>
+  <meta name="author" content="Vijay Ganesh, Trevor Hansen">
+
+  
+  <meta name="description" content="Code Guide Apr 2nd, 2015 4:33 pm The src/ directory is organized into subdirectories for each distinct component of STP. absrefine_counterexample: &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stp.github.io/code-guide/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="STP constraint solver" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">STP constraint solver</a></h1>
+  
+    <h2>Simple Theorem Prover SMT solver</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<ul class="main-navigation">
+   <li><a href="/">Overview</a></li>
+   <li><a href="/cvc-input-language/">CVC language</a></li> 
+   <li><a href="/smt-input-language/">SMT language</a></li> 
+   <li><a href="/cnf-output-format/">CNF output format</a></li> 
+   <li><a href="/testing/">Testing</a></li> 
+   <li><a href="/code-guide/">Code Guide</a></li> 
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Code Guide</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T16:33:00+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>4:33 pm</span></time></p>
+  </header>
+  
+  <p>The src/ directory is organized into subdirectories for each distinct component of STP.</p>
+
+<ul>
+<li><code>absrefine_counterexample</code>: Functions related to abstraction refinement and counterexample construction.</li>
+<li><code>AST</code>: Implements the abstract syntax tree for parsed solver inputs.</li>
+<li><code>c_interface</code>: Defines a C interface for parsing input files, constructing expressions, executing queries, etc.</li>
+<li><code>cpp_interface</code>: Defines the C++ interface for invoking STP.</li>
+<li><code>extlib-abc</code>: The <a href="http://www.eecs.berkeley.edu/~alanmi/abc/abc.htm">ABC</a> package.</li>
+<li><code>extlib-constbv</code>:  A library that implements multi-word fixed-length integers, based on Steffen Beyer&rsquo;s <a href="http://guest.engelschall.com/~sb/download/">Bit::Vector</a> perl module.</li>
+<li><code>main</code>: Implements the executable tool <code>stp</code></li>
+<li><code>parser</code>: Contains the parsers for the CVC, SMT-LIB1, and SMT-LIB2 input formats.</li>
+<li><code>printer</code>:  Implements various output formatters.</li>
+<li><code>Sat</code>: This is a copy of <a href="http://minisat.se">MiniSat</a>, with <a href="http://www.msoos.org/cryptominisat2/">CryptoMiniSat</a> and some other files added.</li>
+<li><code>simplifier</code>: Simplification algorithms for the AST</li>
+<li><code>STPManager</code>: Class that hold all the components together</li>
+<li><code>to-sat</code>: Conversion of AST to SAT</li>
+<li><code>util</code>: Handy utilities for smaller tasks</li>
+</ul>
+
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T16:33:00+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>4:33 pm</span></time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Vijay Ganesh, Trevor Hansen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
