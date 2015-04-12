@@ -150,9 +150,7 @@ Use cases
 * <a href="http://llbmc.org/">Low-level Bounded Model Checker - LLBMC</a> (Karlsruhe Institute of Technology (KIT), Germany)
 * <a href="http://esec-lab.sogeti.com/pages/Fuzzgrind">FuzzGrind</a>  (ESEC Lab)
 * In conjunction with <a href="http://www.cs.utexas.edu/users/moore/acl2/">ACL2</a> to formally verify implementation of encryption algorithms in Java (Stanford University)
-* <a href="http://www.ece.cmu.edu/~jnewsome/">REPLAYER</a>, a tool to replay an application dialog between two hosts in order to analyze security exploits (Carnegie Mellon University)
 * <a href="http://people.csail.mit.edu/akiezun/hampi">Hampi</a> : A solver for string constraints used to automatically construct SQL injection and XSS exploits (MIT)
-* <a href="http://prophet.epfl.ch/">Prophet</a> for development and deployment of distributed systems (EPFL, Switzerland)
 * Automatic configuration: Tvl2STP (University of Namur in Belgium)
 
 
@@ -169,7 +167,7 @@ History and authors
 The initial versions of STP were written primarily by Vijay Ganesh as part of his PhD thesis, and the project was later maintained by Trevor Hansen. The current primary maintainers are Mate Soos, Dan Liew, and Ryan Govostes who have improved it in many ways. STP is based on the following papers:
 
 * <a href="http://people.csail.mit.edu/vganesh/Publications_files/vg2007-STP-CAV.pdf">A Decision Procedure for Bit-vectors and Arrays</a> by Vijay Ganesh and David L. Dill. In Proceedings of the International Conference in Computer Aided Verification (CAV 2007), Berlin, Germany, July 2007
-* <a href="http://people.csail.mit.edu/vganesh/Publications_files/vg2006-EXE-CCS.pdf">EXE: Automatically Generating Inputs of Death</a> by Cristian Cadar, Vijay Ganesh, Peter Pawlowski, Dawson Engler, David Dill. In Proceedings of ACM Conference on Computer and Communications Security 2006 (CCS 2006), Alexandria, Virginia, October, 2006
+* <a href="http://web.stanford.edu/~engler/exe-ccs-06.pdf">EXE: Automatically Generating Inputs of Death</a> by Cristian Cadar, Vijay Ganesh, Peter Pawlowski, Dawson Engler, David Dill. In Proceedings of ACM Conference on Computer and Communications Security 2006 (CCS 2006), Alexandria, Virginia, October, 2006
 
 
 Past contributors: Khoo Yit Phang, Ed Schwartz, Mike Katelman (PhD Student, University of Illinois, Urbana-Champaign, IL, USA), Philip Guo (Student, Stanford University, Stanford, CA, USA), David L. Dill (Professor, Stanford University, Stanford, CA, USA), Tim King (Student, Stanford University and NYU). Please note that everyone working on the project is doing so out of hobby or as a way to help them in their work/study projects.
