@@ -141,8 +141,8 @@ Use cases
 * Mayhem fuzzer, which <a href="http://lwn.net/Articles/557055/">found over 1000 bugs</a> in mainline Debian is using KLEE and hence STP
 * <a href="http://bap.ece.cmu.edu/">Binary Analysis Platform (BAP)</a> is using STP for analysis, by the CMU
 * <a href="http://people.csail.mit.edu/vganesh/STP_files/exe.pdf">EXE</a> is a symbolic-execution based bug-finding tool that reads your C program and tries to automatically crash it (Stanford University)
-* <a href="http://www.ece.cmu.edu/~dawnsong/">MINESWEEPER</a>  is a tool that automatically analyzes certain malicious behavior in unix utilities and malware.  (Carnegie Mellon University)
-* <a href="http://sourceforge.net/projects/catchconv">CATCHCONV</a> is a bug finding tool that tries to find bugs due to type mismatch in C programs. (University of California, Berkeley)
+* <a href="http://users.ece.cmu.edu/~dawnsong/">MINESWEEPER</a>  is a tool that automatically analyzes certain malicious behavior in unix utilities and malware.  (Carnegie Mellon University)
+* <a href="http://sourceforge.net/projects/catchconv/">CATCHCONV</a> is a bug finding tool that tries to find bugs due to type mismatch in C programs. (University of California, Berkeley)
 * Backward path-sensitive analysis of C programs to find bugs by Tim Leek from MIT Lincoln Labs
 * Bug finding in Verilog code (a major microprocessor company)
 * <a href="http://ase.arc.nasa.gov/people/pcorina/papers/jpfseTACAS07.pdf">JPF-SE</a> is a symbolic execution extension to the Java PathFinder model checker . (NASA Ames Research Center)
@@ -150,7 +150,7 @@ Use cases
 * <a href="http://llbmc.org/">Low-level Bounded Model Checker - LLBMC</a> (Karlsruhe Institute of Technology (KIT), Germany)
 * <a href="http://esec-lab.sogeti.com/pages/Fuzzgrind">FuzzGrind</a>  (ESEC Lab)
 * In conjunction with <a href="http://www.cs.utexas.edu/users/moore/acl2/">ACL2</a> to formally verify implementation of encryption algorithms in Java (Stanford University)
-* <a href="http://people.csail.mit.edu/akiezun/hampi">Hampi</a> : A solver for string constraints used to automatically construct SQL injection and XSS exploits (MIT)
+* <a href="http://people.csail.mit.edu/akiezun/hampi/">Hampi</a> : A solver for string constraints used to automatically construct SQL injection and XSS exploits (MIT)
 * Automatic configuration: Tvl2STP (University of Namur in Belgium)
 
 
