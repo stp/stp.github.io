@@ -166,9 +166,8 @@ History and authors
 
 The initial versions of STP were written primarily by Vijay Ganesh as part of his PhD thesis, and the project was later maintained by Trevor Hansen. The current primary maintainers are Mate Soos, Dan Liew, and Ryan Govostes who have improved it in many ways. STP is based on the following papers:
 
-* <a href="http://people.csail.mit.edu/vganesh/Publications_files/vg2007-STP-CAV.pdf">A Decision Procedure for Bit-vectors and Arrays</a> by Vijay Ganesh and David L. Dill. In Proceedings of the International Conference in Computer Aided Verification (CAV 2007), Berlin, Germany, July 2007
-* <a href="http://web.stanford.edu/~engler/exe-ccs-06.pdf">EXE: Automatically Generating Inputs of Death</a> by Cristian Cadar, Vijay Ganesh, Peter Pawlowski, Dawson Engler, David Dill. In Proceedings of ACM Conference on Computer and Communications Security 2006 (CCS 2006), Alexandria, Virginia, October, 2006
-
+* <a href="https://ece.uwaterloo.ca/~vganesh/Publications_files/vg2007-STP-CAV.pdf">A Decision Procedure for Bit-vectors and Arrays</a> by Vijay Ganesh and David L. Dill. In Proceedings of the International Conference in Computer Aided Verification (CAV 2007), Berlin, Germany, July 2007
+* <a href="https://ece.uwaterloo.ca/~vganesh/Publications_files/vg2006-EXE-CCS.pdf">EXE: Automatically Generating Inputs of Death</a> by Cristian Cadar, Vijay Ganesh, Peter Pawlowski, Dawson Engler, David Dill. In Proceedings of ACM Conference on Computer and Communications Security 2006 (CCS 2006), Alexandria, Virginia, October, 2006
 
 Past contributors: Khoo Yit Phang, Ed Schwartz, Mike Katelman (PhD Student, University of Illinois, Urbana-Champaign, IL, USA), Philip Guo (Student, Stanford University, Stanford, CA, USA), David L. Dill (Professor, Stanford University, Stanford, CA, USA), Tim King (Student, Stanford University and NYU). Please note that everyone working on the project is doing so out of hobby or as a way to help them in their work/study projects.
 
