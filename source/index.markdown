@@ -63,8 +63,8 @@ s.model()
 -> {'a': 5L, 'b': 6L, 'c': 11L}
 ```
 
- SMT-LIBv2 Usage
- =============
+SMT-LIBv2 Usage
+=============
 Signed division of -1/-2 =  0, should be satisfiable.
 
 ```
