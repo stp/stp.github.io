@@ -17,21 +17,25 @@ STP is a constraint solver that can solve many kinds of problems including those
 Install instructions
 =============
 
-For Debian-like platforms first install the prerequisites: `apt-get install cmake g++ zlib1g-dev libboost-all-dev flex bison
-git clone https://github.com/stp/minisat.git`
+For Debian-like platforms first install the prerequisites: 
+```
+apt-get install cmake g++ zlib1g-dev libboost-all-dev flex bison
+```
 
 Then install minisat:
 ```
+git clone https://github.com/stp/minisat.git`
 cd minisat && mkdir build && cd build
 cmake ..
 make
 sudo make install
+cd ../..
 ```
 
 Then install STP:
 ```
 git clone https://github.com/stp/stp.git
-mkdir build && cd build
+cd stp && mkdir build && cd build
 cmake ..
 make
 sudo make install
