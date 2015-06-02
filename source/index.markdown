@@ -12,6 +12,8 @@ Overview
 =============
 STP is a constraint solver that can solve many kinds of problems including those by program analysis tools, theorem provers, automated bug finders, cryptographic algorithms, intelligent fuzzers and model checkers.  STP is <a href="https://github.com/stp/stp">actively developed</a> and used by many, including large companies and research institutes.
 
+A somewhat technical PPT presentation about STP is <a href="/images/STP_old_talk.ppt">here</a> and a somewhat newer PDF presentation is <a href="/images/MIT-vijayganesh-stp-talk.pdf">here</a>.
+
 <!--The input to STP are formulas over the theory of bit-vectors and arrays. This theory captures most expressions from languages like C,C++,Java, Verilog etc. STP can tell if the input formula is satisfiable or not and if is, then it can also generate a variable assignment to satisfy the input formula.-->
 
 Install instructions
