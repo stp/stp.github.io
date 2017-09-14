@@ -1,10 +1,9 @@
 source "https://rubygems.org"
 
 group :development do
-  gem 'rake', '~> 10.0'
-  gem 'jekyll', '~> 2.0'
-  gem 'octopress-hooks', '~> 2.2'
-  gem 'octopress-date-format', '~> 2.0'
+  gem 'rake'
+  gem 'jekyll'
+  gem 'octopress-hooks'
   gem 'jekyll-sitemap'
   gem 'rdiscount', '~> 2.0'
   gem 'RedCloth', '~> 4.2.9'
@@ -14,6 +13,10 @@ group :development do
   gem 'rubypants', '~> 0.2.0'
   gem 'rb-fsevent', '~> 0.9'
   gem 'stringex', '~> 1.4.0'
+  gem 'octopress-date-format'
+  gem 'yajl-ruby', '~> 1.3.0'
+  gem 'pygments.rb'
+  gem 'rouge'
 end
 
 gem 'sinatra', '~> 1.4.2'
