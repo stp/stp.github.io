@@ -1,0 +1,42 @@
+---
+layout: base
+---
+<div class="wrapper">
+
+  <header>
+    <div class="logo-ubercontainer">
+      {% if site.compass.logo %}
+      <div class="logo-container">
+        <a class="logo" href="{{ page.baseurl }}" style="background-image: url('{{ site.baseurl }}{{ site.compass.logo }}')"></a>
+        <br />
+        {% if site.compass.author %}
+        <div class="author-container"><h1>{{ site.compass.author }}</h1></div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    
+    <hr />
+
+    <ul class="main-list">
+      <li class="main-list-item">
+        <a href="/live/">Try now in your browser</a>
+      </li>
+      <li class="main-list-item">
+        <a href="https://stp.readthedocs.io">Documentation</a>
+      </li>
+      <li class="main-list-item">
+        <a href="https://github.com/stp/stp">Source code on GitHub</a>
+      </li>
+    </ul>
+    
+    <hr id="separator"/>
+  </header>
+
+  <main>
+    <div class="content">
+    {{ content }}
+    </div>
+  </main>
+
+</div>
