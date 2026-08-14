@@ -1,20 +1,16 @@
-name: Publish site
+name: Publish redirects
 
-# Builds two things into one Pages deployment:
-#   /       the Jekyll landing page from this repo
-#   /docs/  the Sphinx manual, built from stp/stp's docs/ directory
+# This repo no longer holds the website. It exists because GitHub reserves the
+# name stp.github.io for the organisation's Pages URL, which cannot be served
+# from any other repo -- so the old address lives on here as redirect stubs
+# pointing at https://stp.github.io/stp/, built and published from stp/stp.
 #
-# The docs source deliberately lives next to the code it documents, so a PR
-# that changes a dependency can update the install instructions in the same
-# commit. stp/stp is public, so checking it out needs no credentials -- but it
-# also means a push there cannot notify us, hence the nightly schedule.
+# The files are plain HTML with no Jekyll processing, so this workflow just
+# uploads them verbatim.
 
 on:
   push:
     branches: [master]
-  schedule:
-    # Picks up docs commits made in stp/stp. Docs lag by at most a day.
-    - cron: '0 4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -22,53 +18,29 @@ permissions:
   pages: write
   id-token: write
 
-# Never let two deployments race; queue instead of cancelling so a scheduled
-# run cannot discard a push that is mid-flight.
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      # Must run before stp/stp is checked out, so Jekyll never sees it.
-      - uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-
-      # jekyll-build-pages runs in a container as root, so _site/ comes back
-      # root-owned and later steps (which run as `runner`) cannot write into it.
-      - run: sudo chown -R "$(id -u):$(id -g)" _site
-
-      - uses: actions/checkout@v4
-        with:
-          repository: stp/stp
-          path: _stp-src
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - run: pip install -r _stp-src/docs/requirements.txt
-
-      # -W turns warnings into errors: a docs problem fails the build rather
-      # than silently publishing a stale or broken manual.
-      - run: sphinx-build -W -b html _stp-src/docs _site/docs
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+
+      # .nojekyll is not strictly needed for these files, but it keeps the
+      # upload honest if a future stub ever uses an underscore-prefixed path.
+      - run: |
+          mkdir -p _site
+          cp -r index.html docs live _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
       - id: deployment
         uses: actions/deploy-pages@v4
