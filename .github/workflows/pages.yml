@@ -1,0 +1,70 @@
+name: Publish site
+
+# Builds two things into one Pages deployment:
+#   /       the Jekyll landing page from this repo
+#   /docs/  the Sphinx manual, built from stp/stp's docs/ directory
+#
+# The docs source deliberately lives next to the code it documents, so a PR
+# that changes a dependency can update the install instructions in the same
+# commit. stp/stp is public, so checking it out needs no credentials -- but it
+# also means a push there cannot notify us, hence the nightly schedule.
+
+on:
+  push:
+    branches: [master]
+  schedule:
+    # Picks up docs commits made in stp/stp. Docs lag by at most a day.
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deployments race; queue instead of cancelling so a scheduled
+# run cannot discard a push that is mid-flight.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Must run before stp/stp is checked out, so Jekyll never sees it.
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - uses: actions/checkout@v4
+        with:
+          repository: stp/stp
+          path: _stp-src
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install -r _stp-src/docs/requirements.txt
+
+      # -W turns warnings into errors: a docs problem fails the build rather
+      # than silently publishing a stale or broken manual.
+      - run: sphinx-build -W -b html _stp-src/docs _site/docs
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

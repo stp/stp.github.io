@@ -2,3 +2,8 @@
 _site/
 vendor/
 .DS_Store
+
+# The Pages build uses its own pinned gem set and ignores this file; it only
+# affects local `jekyll serve`. Tracking it just generated CVE alerts for gems
+# that never run in production.
+Gemfile.lock
