@@ -1,36 +1,27 @@
-# STP
+# stp.github.io
 
-[Learn more about the Simple Theorem Prover here.][stp]
+This repository is a set of redirect stubs. **The website lives in
+[stp/stp](https://github.com/stp/stp) under `web/`** and is published, together
+with the Sphinx manual in `docs/`, to <https://stp.github.io/stp/>.
 
-[stp]: https://stp.github.io/
+| old address | redirects to |
+| --- | --- |
+| <https://stp.github.io/> | <https://stp.github.io/stp/> |
+| <https://stp.github.io/docs/> | <https://stp.github.io/stp/docs/> |
+| <https://stp.github.io/live/> | <https://stp.github.io/stp/live/> |
 
-This repository contains only the webpage *about* STP, and not the project itself.
+## Why this repo still exists
 
+GitHub reserves the repository name `stp.github.io` for the organisation's
+Pages URL. That address cannot be served from `stp/stp`, so it survives here as
+forwarding stubs while the sources live next to the code they document.
 
-# Theme
+The redirects are HTML `meta refresh` plus a `canonical` link, because GitHub
+Pages serves static files only and cannot issue a real 301.
 
-The web design is based on [Compass][theme] by Eduardo Rubio. The license is reproduced below:
+## Editing
 
-[theme]: http://excentris.net/compass/
-
-    The MIT License (MIT)
-    
-    Copyright (c) 2015 Eduardo Rubio
-    
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-    
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-    
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+Don't edit the site here — changes belong in `stp/stp`. The only reason to
+touch this repo is to add a stub for a new top-level path, in which case add
+the directory and list it in the `cp` step of
+`.github/workflows/pages.yml`.
