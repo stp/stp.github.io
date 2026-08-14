@@ -40,6 +40,10 @@ jobs:
           source: ./
           destination: ./_site
 
+      # jekyll-build-pages runs in a container as root, so _site/ comes back
+      # root-owned and later steps (which run as `runner`) cannot write into it.
+      - run: sudo chown -R "$(id -u):$(id -g)" _site
+
       - uses: actions/checkout@v4
         with:
           repository: stp/stp
